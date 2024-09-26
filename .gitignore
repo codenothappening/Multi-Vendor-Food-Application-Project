@@ -15,7 +15,7 @@ migrate_working_dir/
 .packages
 build/
 .idea/
-assets/
+.assets/
 
 
 # Mac specific
