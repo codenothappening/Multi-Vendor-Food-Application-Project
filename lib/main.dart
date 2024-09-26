@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 
 import 'constants/constants.dart';
 
-Widget defaultHome = const MainScreen();
+Widget defaultHome = MainScreen();
 
 void main() {
   runApp(const MyApp());

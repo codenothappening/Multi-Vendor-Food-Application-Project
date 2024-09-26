@@ -1,13 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
-import 'package:foodly_flutter/constants/constants.dart';
-import 'package:foodly_flutter/controllers/tab_index_controller.dart';
-import 'package:get/get_core/src/get_main.dart';
+import 'package:foodly_flutter/views/cart/cart_page.dart';
+import 'package:foodly_flutter/views/home/home_page.dart';
+import 'package:foodly_flutter/views/profile/profile_page.dart';
+import 'package:foodly_flutter/views/search/search_page.dart';
+
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:get/instance_manager.dart';
 
+import '../constants/constants.dart';
+import '../controllers/tab_index_controller.dart';
+
 class MainScreen extends StatelessWidget {
-  const MainScreen({super.key});
+  MainScreen({super.key});
+
+  List<Widget> pageList = const [
+    HomePage(),
+    SearchPage(),
+    CartPage(),
+    ProfilePage(),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -16,11 +28,7 @@ class MainScreen extends StatelessWidget {
       () => Scaffold(
         body: Stack(
           children: [
-            Container(
-              height: height,
-              width: width,
-              color: kOffWhite,
-            ),
+            pageList[controller.tabIndex],
             Align(
               alignment: Alignment.bottomCenter,
               child: Theme(
@@ -30,7 +38,7 @@ class MainScreen extends StatelessWidget {
                       showUnselectedLabels: false,
                       unselectedIconTheme:
                           const IconThemeData(color: Colors.black38),
-                      selectedIconTheme: const IconThemeData(color: kSecondary),
+                      selectedIconTheme: const IconThemeData(color: kWhite),
                       onTap: (value) {
                         controller.SetTabIndex = value;
                       },
@@ -38,15 +46,22 @@ class MainScreen extends StatelessWidget {
                       items: [
                         BottomNavigationBarItem(
                             icon: controller.tabIndex == 0
-                                ? Icon(AntDesign.appstore1)
-                                : Icon(AntDesign.appstore_o),
+                                ? const Icon(AntDesign.appstore1)
+                                : const Icon(AntDesign.appstore_o),
                             label: "Home"),
-                        BottomNavigationBarItem(
+                        const BottomNavigationBarItem(
                             icon: Icon(Icons.search), label: "Search"),
+                        const BottomNavigationBarItem(
+                            icon: Badge(
+                              label: Text('1'),
+                              child: Icon(FontAwesome.opencart),
+                            ),
+                            label: "Cart"),
                         BottomNavigationBarItem(
-                            icon: Icon(Icons.shopping_cart), label: "Cart"),
-                        BottomNavigationBarItem(
-                            icon: Icon(Icons.person), label: "Profile"),
+                            icon: controller.tabIndex == 3
+                                ? const Icon(FontAwesome.user_circle)
+                                : const Icon(FontAwesome.user_circle_o),
+                            label: "Profile"),
                       ])),
             )
           ],
