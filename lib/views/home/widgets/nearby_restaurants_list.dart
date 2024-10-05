@@ -12,7 +12,7 @@ class NearbyRestaurantsList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 194.h,
+      height: 190.h,
       padding: EdgeInsets.only(left: 12.w, top: 10.h),
       child: ListView(
         scrollDirection: Axis.horizontal,
@@ -21,9 +21,9 @@ class NearbyRestaurantsList extends StatelessWidget {
           return RestaurantWidget(
             image: restaurant['imageUrl'],
             logo: restaurant['logoUrl'],
-            rating: restaurant['ratingCount'],
-            time: restaurant['time'],
             title: restaurant['title'],
+            time: restaurant['time'],
+            rating: restaurant['ratingCount'],
           );
         }),
       ),
