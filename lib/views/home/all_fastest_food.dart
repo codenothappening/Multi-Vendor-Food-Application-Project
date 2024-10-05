@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:foodly_flutter/common/app_style.dart';
+import 'package:foodly_flutter/constants/constants.dart';
 
 class AllFastestFood extends StatelessWidget {
   const AllFastestFood({super.key});
@@ -8,10 +10,14 @@ class AllFastestFood extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         elevation: 0.3,
-        title: const Text("All fastest food"),
+        backgroundColor: kOffWhite,
+        title: Text(
+          "Fastest food",
+          style: appStyle(13, kGray, FontWeight.w600),
+        ),
       ),
       body: const Center(
-        child: Text("All Nearby food"),
+        child: Text("All Nearby Restaurants"),
       ),
     );
   }
