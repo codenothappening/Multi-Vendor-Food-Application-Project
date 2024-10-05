@@ -6,6 +6,7 @@ import 'package:foodly_flutter/common/reusable_text_widget.dart';
 import 'package:foodly_flutter/constants/constants.dart';
 import 'package:foodly_flutter/constants/uidata.dart';
 import 'package:foodly_flutter/views/categories/category_page.dart';
+import 'package:foodly_flutter/views/categories/widgets/category_tile.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/routes/transitions_type.dart';
@@ -33,31 +34,7 @@ class AllCategories extends StatelessWidget {
             scrollDirection: Axis.vertical,
             children: List.generate(categories.length, (i) {
               var category = categories[i];
-              return ListTile(
-                onTap: () => {
-                  Get.to(
-                    () => const CategoryPage(),
-                    transition: Transition.fadeIn,
-                    duration: const Duration(microseconds: 900),
-                  ),
-                },
-                leading: CircleAvatar(
-                  radius: 18.r,
-                  backgroundColor: kGrayLight,
-                  child: Image.network(
-                    category["imageUrl"],
-                    fit: BoxFit.contain,
-                  ),
-                ),
-                title: ReusableTextWidget(
-                    text: category['title'],
-                    style: appStyle(14, kGray, FontWeight.w600)),
-                trailing: Icon(
-                  Icons.arrow_forward_ios_rounded,
-                  color: kGray,
-                  size: 15.r,
-                ),
-              );
+              return CategoryTile(category: category);
             }),
           ),
         ),

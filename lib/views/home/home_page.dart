@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:foodly_flutter/common/custom_appbar.dart';
 import 'package:foodly_flutter/common/custom_container.dart';
+import 'package:foodly_flutter/common/heading.dart';
 import 'package:foodly_flutter/constants/constants.dart';
 import 'package:foodly_flutter/views/home/widgets/category_list.dart';
 
@@ -18,9 +19,13 @@ class HomePage extends StatelessWidget {
       ),
       body: SafeArea(
         child: CustomContainer(
-          containerContent: const Column(
+          containerContent: Column(
             children: [
-              CategoryList(),
+              const CategoryList(),
+              Heading(
+                text: "Nearby Restaurants",
+                onTap: () => {},
+              )
             ],
           ),
         ),
