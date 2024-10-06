@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:foodly_flutter/common/app_style.dart';
+import 'package:foodly_flutter/common/background_container.dart';
 import 'package:foodly_flutter/constants/constants.dart';
+import 'package:foodly_flutter/views/home/widgets/restaurant_tile.dart';
+
+import '../../constants/uidata.dart';
+import 'widgets/food_widget.dart';
 
 class AllNearbyRestaurants extends StatelessWidget {
   const AllNearbyRestaurants({super.key});
@@ -8,17 +14,33 @@ class AllNearbyRestaurants extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0.3,
-        backgroundColor: kOffWhite,
-        title: Text(
-          "Nearby Restaurants",
-          style: appStyle(13, kGray, FontWeight.w600),
+        appBar: AppBar(
+          elevation: 0,
+          backgroundColor: kOffWhite,
+          title: Text(
+            "Nearby Restaurants",
+            style: appStyle(13, kGray, FontWeight.w600),
+          ),
         ),
-      ),
-      body: const Center(
-        child: Text("All Nearby Restaurant"),
-      ),
-    );
+        body: BackgroundContainer(
+          color: Colors.white,
+          child: Padding(
+            padding: EdgeInsets.fromLTRB(
+              12.w,
+              12.h,
+              12.w,
+              12.h,
+            ),
+            child: ListView(
+              scrollDirection: Axis.vertical,
+              children: List.generate(restaurants.length, (i) {
+                var restaurant = restaurants[i];
+                return RestaurantTile(
+                  restaurant: restaurant,
+                );
+              }),
+            ),
+          ),
+        ));
   }
 }
