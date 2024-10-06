@@ -78,6 +78,18 @@ class RestaurantTile extends StatelessWidget {
                       ReusableTextWidget(
                         text: restaurant['title'],
                         style: appStyle(11, kDark, FontWeight.w400),
+                      ),
+                      ReusableTextWidget(
+                        text: "Delivery Time: ${restaurant['time']}",
+                        style: appStyle(11, kGray, FontWeight.w400),
+                      ),
+                      SizedBox(
+                        width: width * 0.7,
+                        child: Text(
+                          restaurant['coords']['address'],
+                          overflow: TextOverflow.ellipsis,
+                          style: appStyle(9, kGray, FontWeight.w400),
+                        ),
                       )
                     ],
                   ),
