@@ -15,11 +15,11 @@ class AllFastestFood extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          elevation: 0.3,
-          backgroundColor: kOffWhite,
+          backgroundColor: kSecondary,
+          elevation: 0,
           title: Text(
-            "Fastest food",
-            style: appStyle(13, kGray, FontWeight.w600),
+            "Fastest Foods",
+            style: appStyle(13, kLightWhite, FontWeight.w600),
           ),
         ),
         body: BackgroundContainer(
