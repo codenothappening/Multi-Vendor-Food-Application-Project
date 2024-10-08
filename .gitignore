@@ -17,7 +17,7 @@ build/
 .idea/
 assets/
 
-
+.backend_foodly/node_modules
 # Mac specific
 .DS_Store
 
