@@ -1,4 +1,4 @@
-const { messaging } = require("firebase-admin");
+
 const Restaurant = require("../models/Restaurant");
 
 module.exports = {
@@ -7,6 +7,7 @@ module.exports = {
       title,
       time,
       imageUrl,
+      // value,
       pickup,
       delivery,
       isAvailable,
@@ -18,6 +19,7 @@ module.exports = {
     if (
       !title ||
       !time ||
+      // !value ||
       !imageUrl ||
       !owner ||
       !code ||
@@ -39,6 +41,7 @@ module.exports = {
         .status(201)
         .json({ status: true, message: "Restaurant added Successfully" });
     } catch (error) {
+      console.error(error); 
       res.status(500).json({ status: false, message: error.message });
     }
   },
@@ -51,7 +54,7 @@ module.exports = {
       res.status(500).json({ status: false, message: error.message });
     }
   },
-  getAllNearByRestaurants: async (req, res) => {
+  getRandomRestaurants: async (req, res) => {
     const code = req.params.code;
 
     try {
@@ -87,11 +90,12 @@ module.exports = {
       res.status(500).json({ status: false, message: error.message });
     }
   },
-  getRandomRestaurants: async (req, res) => {
+  getAllNearByRestaurants: async (req, res) => {
+    const code = req.params.code;
     try {
-      let randomRestaurant = [];
+      let allNearByRestaurant = [];
       if (code) {
-        randomRestaurant = Restaurant.aggregate([
+        allNearByRestaurant = Restaurant.aggregate([
           {
             $match: { code: code, isAvailable: true },
           },
@@ -101,8 +105,8 @@ module.exports = {
           },
         ]);
       }
-      if (randomRestaurant.length == 0) {
-        randomRestaurant = Restaurant.aggregate([
+      if (allNearByRestaurant.length == 0) {
+        allNearByRestaurant = Restaurant.aggregate([
           {
             $match: { isAvailable: true },
           },
@@ -112,7 +116,9 @@ module.exports = {
           },
         ]);
       }
-      res.status(200).json(randomRestaurant);
-    } catch (error) {}
+      res.status(200).json(allNearByRestaurant);
+    } catch (error) {
+        res.status(500).json({ status: false, message: error.message });
+    }
   },
 };
